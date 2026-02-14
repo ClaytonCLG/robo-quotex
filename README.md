@@ -1,2 +1,0 @@
-# robo-quotex
-Web site 
