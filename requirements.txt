@@ -1,0 +1,4 @@
+flask
+py-quotex
+requests
+gunicorn
