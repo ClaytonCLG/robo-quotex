@@ -1,14 +1,5 @@
-import subprocess
-import sys
-
-# FORÇA A INSTALAÇÃO DA QUOTEX SE ELA NÃO EXISTIR
-try:
-    from pyquotex import Quotex
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "pyquotex"])
-    from pyquotex import Quotex
-
 from flask import Flask, jsonify
+from pyquotex import Quotex
 import os
 
 app = Flask(__name__)
@@ -20,6 +11,7 @@ def operacao():
     client = Quotex(email=email, password=senha)
     
     if client.connect():
+        # ABRE COMPRA DE R$ 5
         status, erro = client.open_order("EURUSD", 5, "call", 1)
         if status:
             return jsonify({"status": "Sucesso", "mensagem": "ORDEM ABERTA!"})
@@ -27,6 +19,7 @@ def operacao():
     return jsonify({"status": "Erro", "mensagem": "Falha no login"})
 
 if __name__ == "__main__":
+    # O Render usa a porta automática ou a 10000
     port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
-  
+    
