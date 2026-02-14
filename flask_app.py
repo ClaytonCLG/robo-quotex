@@ -1,3 +1,14 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+options = Options()
+options.add_argument("--headless") # Roda sem janela (obrigatório no Render)
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+
+driver = webdriver.Chrome(options=options)
+driver.get("https://qxbroker.com/pt/login")
+
 from flask import Flask, jsonify
 from pyquotex import Quotex
 import os
