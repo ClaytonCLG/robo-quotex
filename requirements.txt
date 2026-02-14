@@ -1,3 +1,4 @@
+pyquotex
 flask
 requests
 gunicorn
